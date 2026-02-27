@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Med2Hand - Seller Flow (Updated)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Prompt', sans-serif; background-color: #f3f4f6; }
+        .hide-scroll::-webkit-scrollbar { display: none; }
+        .hide-scroll { -ms-overflow-style: none; scrollbar-width: none; }
+        .fade-in { animation: fadeIn 0.3s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        /* Custom Colors */
+        .bg-navy { background-color: #0A1931; }
+        .text-navy { color: #0A1931; }
+        .border-navy { border-color: #0A1931; }
+        
+        .bg-magenta { background-color: #D81B60; }
+        .text-magenta { color: #D81B60; }
+        .border-magenta { border-color: #D81B60; }
+    </style>
+</head>
+<body class="flex justify-center items-center min-h-screen py-10">
+
+    <div class="bg-white w-full max-w-[400px] h-[800px] rounded-[40px] shadow-2xl relative overflow-hidden flex flex-col border-[8px] border-gray-800">
+        
+        <div id="screen-orders" class="flex flex-col h-full w-full absolute top-0 left-0 bg-gray-50 z-10 fade-in">
+            <div class="bg-navy text-white pt-12 pb-4 px-5 rounded-b-3xl shadow-md">
+                <div class="flex justify-between items-center mb-2">
+                    <h1 class="text-xl font-bold tracking-wide">Seller Center 🏪</h1>
+                    <div class="bg-magenta text-white text-[10px] px-2 py-1 rounded-full font-bold shadow-sm">
+                        โหมดผู้ขาย
+                    </div>
+                </div>
+                <h2 class="text-sm font-light opacity-90">สวัสดี, คุณ Palm Kod Thē</h2>
+            </div>
+
+            <div class="flex-1 overflow-y-auto hide-scroll p-5 pb-24">
+                
+                <h3 class="text-navy font-bold mb-4">ออเดอร์ที่ต้องจัดส่ง (2)</h3>
+                
+                <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 mb-4 relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-1 h-full bg-magenta"></div>
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-[10px] font-bold text-gray-400">#ORD-9876 • วันนี้ 09:15</span>
+                        <span class="bg-[#fdf2f6] text-magenta border border-magenta text-[10px] px-2 py-0.5 rounded-full font-bold">รอจัดส่งไปศูนย์</span>
+                    </div>
+                    
+                    <div class="flex gap-3 mb-3">
+                        <img src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=100&q=80" alt="Bed" class="w-16 h-16 rounded-xl object-cover bg-gray-100">
+                        <div>
+                            <h4 class="text-navy font-bold text-sm leading-tight">เตียงผู้ป่วยไฟฟ้า 3 ไกร์</h4>
+                            <p class="text-navy font-bold text-sm mt-1">฿22,000</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-navy rounded-xl p-3 text-white mb-3 flex items-start gap-2 shadow-sm">
+                        <span class="text-sm">🛠️</span>
+                        <div>
+                            <p class="text-[11px] font-bold">ผู้ซื้อเลือกบริการตรวจเช็คสภาพ</p>
+                            <p class="text-[10px] opacity-80 mt-0.5">กรุณาจัดส่งสินค้าไปที่ "ศูนย์บริการ Med2Hand" เพื่อดำเนินการตรวจสอบก่อนส่งมอบ</p>
+                        </div>
+                    </div>
+
+                    <button onclick="goToSellerScreen('screen-logistics')" class="w-full bg-magenta text-white font-bold py-2.5 rounded-xl text-sm shadow-sm hover:bg-[#b0164e] transition">
+                        จัดการการจัดส่ง
+                    </button>
+                </div>
+
+                <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 mb-6 relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-1 h-full bg-blue-500"></div>
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-[10px] font-bold text-gray-400">#ORD-9877 • เมื่อวาน 18:30</span>
+                        <span class="bg-blue-50 text-blue-600 border border-blue-200 text-[10px] px-2 py-0.5 rounded-full font-bold">จัดส่งตรง</span>
+                    </div>
+                    
+                    <div class="flex gap-3 mb-3">
+                        <img src="https://images.unsplash.com/photo-1631549916768-4119b2e5f926?auto=format&fit=crop&w=100&q=80" alt="BP Monitor" class="w-16 h-16 rounded-xl object-cover bg-gray-100">
+                        <div>
+                            <h4 class="text-navy font-bold text-sm leading-tight">เครื่องวัดความดัน Omron</h4>
+                            <p class="text-navy font-bold text-sm mt-1">฿850</p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-2">
+                        <button class="flex-1 bg-white border border-navy text-navy font-bold py-2.5 rounded-xl text-xs hover:bg-gray-50">พิมพ์ใบปะหน้า</button>
+                        <button class="flex-1 bg-navy text-white font-bold py-2.5 rounded-xl text-xs shadow-sm hover:bg-[#0a1931e6]">เรียกรถเข้ารับ</button>
+                    </div>
+                </div>
+
+                <div class="flex justify-between items-end mb-4 border-t border-gray-200 pt-6">
+                    <h3 class="text-navy font-bold">สินค้าที่กำลังลงขาย (2)</h3>
+                    <span class="text-[10px] text-magenta font-bold underline cursor-pointer">จัดการทั้งหมด</span>
+                </div>
+
+                <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 mb-4 flex gap-3 transition transform hover:scale-[1.02]">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1584362917165-526a968579e8?auto=format&fit=crop&w=100&q=80" alt="Wheelchair" class="w-20 h-20 rounded-xl object-cover bg-gray-100">
+                        <div class="absolute -top-2 -right-2 bg-green-100 border border-green-500 w-4 h-4 rounded-full"></div>
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="text-navy font-bold text-sm leading-tight line-clamp-1">รถเข็นวีลแชร์อลูมิเนียม พับได้</h4>
+                        <p class="text-navy font-bold text-sm mt-1">฿3,500</p>
+                        
+                        <div class="flex items-center text-[10px] text-gray-500 mt-1.5 gap-3">
+                            <span class="flex items-center gap-1">👁️ 128 ครั้ง</span>
+                            <span class="flex items-center gap-1">❤️ 15 คนสนใจ</span>
+                        </div>
+                        
+                        <div class="flex gap-2 mt-2">
+                            <button class="flex-[1] bg-gray-50 border border-gray-200 text-gray-600 font-bold py-1.5 rounded-lg text-[10px] hover:bg-gray-100">✏️ แก้ไข</button>
+                            <button onclick="alert('ไปหน้าจอ ซื้อโฆษณา (Boost Ad)')" class="flex-[1.5] bg-[#fdf2f6] border border-magenta text-magenta font-bold py-1.5 rounded-lg text-[10px] hover:bg-magenta hover:text-white transition">🚀 โปรโมท</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 mb-4 flex gap-3 transition transform hover:scale-[1.02]">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1584017911766-d451b3d0e843?auto=format&fit=crop&w=100&q=80" alt="Walking Stick" class="w-20 h-20 rounded-xl object-cover bg-gray-100">
+                        <div class="absolute -top-2 -right-2 bg-green-100 border border-green-500 w-4 h-4 rounded-full"></div>
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="text-navy font-bold text-sm leading-tight line-clamp-1">ไม้เท้าช่วยเดิน 4 ขา (มือสอง)</h4>
+                        <p class="text-navy font-bold text-sm mt-1">฿250</p>
+                        
+                        <div class="flex items-center text-[10px] text-gray-500 mt-1.5 gap-3">
+                            <span class="flex items-center gap-1">👁️ 45 ครั้ง</span>
+                            <span class="flex items-center gap-1">❤️ 2 คนสนใจ</span>
+                        </div>
+                        
+                        <div class="flex gap-2 mt-2">
+                            <button class="flex-[1] bg-gray-50 border border-gray-200 text-gray-600 font-bold py-1.5 rounded-lg text-[10px] hover:bg-gray-100">✏️ แก้ไข</button>
+                            <button onclick="alert('ไปหน้าจอ ซื้อโฆษณา (Boost Ad)')" class="flex-[1.5] bg-[#fdf2f6] border border-magenta text-magenta font-bold py-1.5 rounded-lg text-[10px] hover:bg-magenta hover:text-white transition">🚀 โปรโมท</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="screen-listing" class="flex flex-col h-full w-full absolute top-0 left-0 bg-white z-10 hidden fade-in">
+            <div class="pt-12 pb-3 px-5 flex items-center bg-navy text-white shadow-sm sticky top-0 z-10">
+                <h1 class="font-bold text-lg flex-1 text-center">ลงขายสินค้า</h1>
+            </div>
+
+            <div class="flex-1 overflow-y-auto hide-scroll p-5 pb-24 bg-gray-50">
+                <div class="bg-white rounded-2xl border-2 border-dashed border-gray-300 p-6 flex flex-col items-center justify-center text-gray-400 mb-5 cursor-pointer hover:bg-gray-50 transition">
+                    <span class="text-3xl mb-2 text-magenta">📷</span>
+                    <span class="text-sm font-bold text-navy">เพิ่มรูปภาพสินค้า</span>
+                    <span class="text-[10px]">สูงสุด 8 รูป</span>
+                </div>
+
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-bold text-navy mb-1">ชื่อสินค้า <span class="text-magenta">*</span></label>
+                        <input type="text" placeholder="เช่น เครื่องผลิตออกซิเจน 5 ลิตร" class="w-full border border-gray-200 rounded-xl p-3 text-sm outline-none focus:border-magenta focus:ring-1 focus:ring-magenta">
+                    </div>
+                    
+                    <div class="flex gap-3">
+                        <div class="flex-1">
+                            <label class="block text-xs font-bold text-navy mb-1">หมวดหมู่ <span class="text-magenta">*</span></label>
+                            <select class="w-full border border-gray-200 rounded-xl p-3 text-sm outline-none bg-white text-gray-500">
+                                <option>เลือกหมวดหมู่</option>
+                                <option>เครื่องช่วยหายใจ/ออกซิเจน</option>
+                                <option>เตียงผู้ป่วย</option>
+                                <option>รถเข็น/ไม้เท้า</option>
+                            </select>
+                        </div>
+                        <div class="flex-1">
+                            <label class="block text-xs font-bold text-navy mb-1">ราคาขาย (฿) <span class="text-magenta">*</span></label>
+                            <input type="number" placeholder="0.00" class="w-full border border-gray-200 rounded-xl p-3 text-sm outline-none font-bold text-magenta focus:border-magenta focus:ring-1 focus:ring-magenta">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-navy mb-2 flex items-center">
+                            สภาพสินค้าตามมาตรฐาน Med2Hand <span class="text-magenta ml-1">*</span>
+                        </label>
+                        <div class="grid grid-cols-1 gap-2">
+                            <label class="flex items-center p-3 border border-magenta bg-[#fdf2f6] rounded-xl cursor-pointer">
+                                <input type="radio" name="condition" class="accent-magenta w-4 h-4" checked>
+                                <div class="ml-3">
+                                    <span class="block text-sm font-bold text-navy">Grade A (เหมือนใหม่)</span>
+                                    <span class="block text-[10px] text-gray-500">ใช้งานน้อยกว่า 3 เดือน ไม่มีรอยขีดข่วน</span>
+                                </div>
+                            </label>
+                            <label class="flex items-center p-3 border border-gray-200 bg-white rounded-xl cursor-pointer">
+                                <input type="radio" name="condition" class="accent-magenta w-4 h-4">
+                                <div class="ml-3">
+                                    <span class="block text-sm font-bold text-navy">Grade B (สภาพดี)</span>
+                                    <span class="block text-[10px] text-gray-500">มีร่องรอยการใช้งานทั่วไป ฟังก์ชันทำงานครบ 100%</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="w-full mt-6 bg-navy text-white font-bold py-3.5 rounded-xl text-sm shadow-md hover:bg-[#0a1931e6] transition">
+                    โพสต์ขายสินค้า
+                </button>
+            </div>
+        </div>
+
+        <div id="screen-wallet" class="flex flex-col h-full w-full absolute top-0 left-0 bg-gray-50 z-10 hidden fade-in">
+            <div class="pt-12 pb-3 px-5 flex items-center bg-navy text-white shadow-sm sticky top-0 z-10">
+                <h1 class="font-bold text-lg flex-1 text-center">รายได้ของฉัน</h1>
+            </div>
+
+            <div class="flex-1 overflow-y-auto hide-scroll p-5 pb-24">
+                <div class="bg-navy rounded-3xl p-6 text-white shadow-lg mb-4 relative overflow-hidden">
+                    <div class="absolute -right-10 -bottom-10 w-32 h-32 bg-magenta rounded-full opacity-20"></div>
+                    <div class="relative z-10">
+                        <p class="text-xs opacity-80 mb-1">ยอดเงินที่ถอนได้ (Available Balance)</p>
+                        <h2 class="text-3xl font-bold mb-4">฿ 14,550.00</h2>
+                        
+                        <button class="w-full bg-magenta text-white font-bold py-2 rounded-xl text-sm shadow-sm hover:bg-[#b0164e] transition">
+                            💸 ถอนเงินเข้าบัญชีธนาคาร
+                        </button>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 mb-6 flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-gray-500">🔒</div>
+                        <div>
+                            <p class="text-xs font-bold text-navy">ยอดเงินรอประเมิน (Escrow)</p>
+                            <p class="text-[10px] text-gray-400">รอผู้ซื้อรับของ หรือรอศูนย์ตรวจสภาพ</p>
+                        </div>
+                    </div>
+                    <span class="text-sm font-bold text-gray-500">฿ 22,000</span>
+                </div>
+
+                <h3 class="text-navy font-bold text-sm mb-3">ประวัติการทำรายการล่าสุด</h3>
+                <div class="space-y-3">
+                    <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 flex justify-between items-center">
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 bg-green-50 rounded-full flex items-center justify-center text-green-500 text-xs">⬇️</div>
+                            <div>
+                                <p class="text-xs font-bold text-navy">ขายเครื่องผลิตออกซิเจน</p>
+                                <p class="text-[10px] text-gray-400">10 ต.ค. • หัก Platform Fee (3%) แล้ว</p>
+                            </div>
+                        </div>
+                        <span class="text-sm font-bold text-green-500">+฿14,550</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="seller-bottom-nav" class="absolute bottom-0 w-full bg-white border-t border-gray-100 flex justify-around py-4 pb-8 text-xs text-gray-400 z-50 shadow-[0_-5px_15px_rgba(0,0,0,0.03)]">
+            <div id="nav-seller-orders" onclick="goToSellerScreen('screen-orders')" class="flex flex-col items-center cursor-pointer text-navy font-bold transition-all">
+                <span class="text-lg mb-1">📦</span> แดชบอร์ด
+            </div>
+            <div id="nav-seller-listing" onclick="goToSellerScreen('screen-listing')" class="flex flex-col items-center cursor-pointer hover:text-navy transition-all relative">
+                <div class="absolute -top-6 w-12 h-12 bg-magenta rounded-full flex items-center justify-center text-white text-2xl font-bold shadow-lg border-4 border-white">
+                    +
+                </div>
+                <span class="mt-6">ลงขาย</span>
+            </div>
+            <div id="nav-seller-wallet" onclick="goToSellerScreen('screen-wallet')" class="flex flex-col items-center cursor-pointer hover:text-navy transition-all">
+                <span class="text-lg mb-1">💰</span> รายได้
+            </div>
+        </div>
+
+        <div id="screen-logistics" class="flex flex-col h-full w-full absolute top-0 left-0 bg-gray-50 z-50 hidden fade-in">
+            <div class="pt-12 pb-3 px-5 flex items-center bg-white shadow-sm sticky top-0 z-10">
+                <button onclick="goToSellerScreen('screen-orders')" class="text-navy text-xl mr-4 font-bold hover:text-magenta transition">←</button>
+                <h1 class="text-navy font-bold text-lg flex-1 text-center">จัดการการจัดส่ง</h1>
+                <div class="w-6"></div>
+            </div>
+
+            <div class="flex-1 overflow-y-auto hide-scroll p-5 pb-24">
+                <h2 class="text-navy font-bold text-sm mb-3">จุดหมายปลายทาง</h2>
+                <div class="bg-navy rounded-2xl p-4 text-white shadow-sm mb-6 border-l-4 border-magenta">
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="bg-white text-navy text-[10px] px-2 py-0.5 rounded font-bold">ศูนย์ตรวจสอบ</span>
+                        <span class="text-xs font-bold">Med2Hand Inspection Center</span>
+                    </div>
+                    <p class="text-[11px] opacity-80 leading-relaxed">
+                        99/9 อาคารนวัตกรรมทางการแพทย์ ชั้น 1<br>
+                        ถ.สุขุมวิท อ.เมือง จ.สมุทรปราการ 10270<br>
+                    </p>
+                </div>
+
+                <h2 class="text-navy font-bold text-sm mb-3">เลือกผู้ให้บริการขนส่งเอกชน</h2>
+                <div class="grid grid-cols-2 gap-3 mb-6">
+                    <div class="bg-white border-2 border-magenta rounded-xl p-3 flex flex-col items-center justify-center cursor-pointer relative shadow-sm">
+                        <div class="absolute top-2 right-2 w-4 h-4 bg-magenta rounded-full flex items-center justify-center text-white text-[8px] font-bold">✓</div>
+                        <div class="w-12 h-12 bg-gray-100 rounded-full mb-2 flex items-center justify-center font-bold text-orange-500 text-xs">KERRY</div>
+                        <span class="text-xs font-bold text-navy">Kerry Express</span>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 mb-6 text-center">
+                    <p class="text-xs text-gray-500 mb-1">หมายเลขพัสดุ (Tracking Number)</p>
+                    <h3 class="text-2xl font-bold text-navy tracking-wider mb-3">TH-MED-998877</h3>
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=TH-MED-998877" alt="Barcode" class="mx-auto w-32 h-32 mb-4 mix-blend-multiply">
+                    <button class="text-magenta text-xs font-bold underline">พิมพ์ใบปะหน้ากล่อง</button>
+                </div>
+            </div>
+
+            <div class="absolute bottom-0 w-full bg-white border-t border-gray-100 p-4 pb-8 shadow-[0_-10px_20px_rgba(0,0,0,0.05)]">
+                <button onclick="alert('ระบบได้ส่งคำสั่งไปยัง Kerry Express เพื่อเข้ารับพัสดุที่บ้านคุณแล้ว!')" class="w-full bg-magenta text-white font-bold py-4 rounded-xl text-sm shadow-md flex justify-center items-center gap-2 hover:bg-[#b0164e] transition">
+                    <span>📞 เรียกรถขนส่งเข้ารับที่บ้าน (Pick-up)</span>
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function goToSellerScreen(screenId) {
+            const allScreens = ['screen-orders', 'screen-listing', 'screen-wallet', 'screen-logistics'];
+            allScreens.forEach(id => {
+                document.getElementById(id).classList.add('hidden');
+            });
+            
+            document.getElementById(screenId).classList.remove('hidden');
+            window.scrollTo(0, 0);
+
+            const mainNav = document.getElementById('seller-bottom-nav');
+            const navIds = ['nav-seller-orders', 'nav-seller-listing', 'nav-seller-wallet'];
+            
+            if (screenId === 'screen-logistics') {
+                mainNav.classList.add('hidden');
+            } else {
+                mainNav.classList.remove('hidden');
+                
+                navIds.forEach(id => {
+                    const el = document.getElementById(id);
+                    if (id === 'nav-seller-listing') {
+                        if (screenId === 'screen-listing') {
+                            el.classList.add('text-navy', 'font-bold');
+                            el.querySelector('div').classList.add('bg-navy');
+                            el.querySelector('div').classList.remove('bg-magenta');
+                        } else {
+                            el.classList.remove('text-navy', 'font-bold');
+                            el.querySelector('div').classList.remove('bg-navy');
+                            el.querySelector('div').classList.add('bg-magenta');
+                        }
+                        return;
+                    }
+
+                    if (id === 'nav-seller-' + screenId.split('-')[1]) {
+                        el.classList.add('text-navy', 'font-bold');
+                        el.classList.remove('text-gray-400', 'font-normal');
+                    } else {
+                        el.classList.add('text-gray-400', 'font-normal');
+                        el.classList.remove('text-navy', 'font-bold');
+                    }
+                });
+            }
+        }
+    </script>
+</body>
+</html>
